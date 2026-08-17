@@ -1,69 +1,55 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
+    <div>
+      <p className="eyebrow">touch typing, ten fingers, no looking down</p>
+      <h1 className="heroType">
+        the quick brown fox
+        <br />
+        j<span className="acc">u</span>
+        <span className="ghost">mps over the lazy dog</span>
+      </h1>
+      <p className="pageIntro">
+        Keep your index fingers on <strong>f</strong> and <strong>j</strong>,
+        let the on-screen keyboard show you which finger moves, and build up
+        from the home row to full-speed typing.
+      </p>
+
+      <div className="homeGrid">
+        <Link className="homeCard" href="/lessons">
+          <h3>lessons</h3>
           <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+            16 steps from f–j to capitals. Each lesson unlocks two keys and
+            drills them until they sit under the right finger.
           </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+          <span className="go">start at the home row →</span>
+        </Link>
+        <Link className="homeCard" href="/practice">
+          <h3>practice</h3>
+          <p>
+            Free typing over common English words with the full keyboard. No
+            timer, just flow.
+          </p>
+          <span className="go">warm up →</span>
+        </Link>
+        <Link className="homeCard" href="/test">
+          <h3>speed test</h3>
+          <p>
+            30, 60 or 120 seconds against the clock. Words per minute and
+            accuracy, saved to your history.
+          </p>
+          <span className="go">measure yourself →</span>
+        </Link>
+        <Link className="homeCard" href="/stats">
+          <h3>stats</h3>
+          <p>
+            Your speed over time and the keys that still trip you up, stored
+            locally in this browser.
+          </p>
+          <span className="go">see your progress →</span>
+        </Link>
+      </div>
     </div>
   );
 }

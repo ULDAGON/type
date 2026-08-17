@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ULDAGON_type — touch typing trainer
 
-## Getting Started
+A Next.js app for learning 10-finger touch typing. Monospace UI, dark
+(`#0e131c`) background, `#d4d4d4` text, `#fffb00` accents.
 
-First, run the development server:
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's inside
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Lessons** (`/lessons`) — 16 progressive steps. Each lesson introduces two
+  keys, starting with the index fingers on the home row (`f` `j`) and working
+  outward, ending with capitals via shift. Drills mix letter patterns with real
+  words once enough letters are unlocked.
+- **Practice** (`/practice`) — free typing over common English words, no timer.
+- **Speed test** (`/test`) — 30/60/120 seconds against the clock. The timer
+  starts on the first keystroke; WPM counts correct characters only
+  (chars ÷ 5 ÷ minutes).
+- **Stats** (`/stats`) — WPM over time, per-key miss-rate heatmap, and recent
+  session history.
 
-## Learn More
+The trainer uses a correction-free model: a wrong key never advances the
+cursor — it flashes red, counts as an error, and waits for the right key.
+The on-screen keyboard highlights the next key and names the finger to use.
 
-To learn more about Next.js, take a look at the following resources:
+All progress is stored in `localStorage`; nothing leaves the browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `hooks/useTypingEngine.ts` — keystroke handling, timing, WPM/accuracy
+- `lib/lessons.ts` — curriculum and drill text generation
+- `lib/keyboard.ts` — key layout and finger mapping
+- `lib/words.ts` — common-word pool
+- `lib/stats.ts` — localStorage persistence
+- `components/TrainerSession.tsx` — one typing session (text → results)
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT — see [LICENSE](LICENSE).
